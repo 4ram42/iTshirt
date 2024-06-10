@@ -1,0 +1,27 @@
+◆ 액세스키(키페어) 등록 [ SSH접속을 위한 키페어 등록 ]
+   기술문서를 참고하여 등록하는법 확인
+   ==> 키페어는 EC2 가 생성되고 추가되는 과정이 안됨. 즉 EC2를 생성할 때 키페어가 있어야함  
+    여기서 다시 실행하면 하나가 더 생성되는 과정이됨.  
+
+
+#key_name 추가 ( 키페어는 미리 생성 되어 있어야함 )
+
+terraform {
+  required_version = ">= 0.12, < 0.13"
+}
+
+provider "aws" {                                          
+  region = "ap-northeast-2"                            
+}
+  
+resource "aws_instance" "example" {             
+  ami                         = "ami-0c55b159cbfafe1f0"
+  instance_type       = "t2.micro"
+  key_name            = "soldesk" 
+
+#terraform show               내용 확인 
+#terraform destory        ==> 리소스 삭제  화면을 보면 삭제된다는 - 기호가 보임.
+AWS 에서도 확인 해보면 EC2 "종료됨"
+
+
+
